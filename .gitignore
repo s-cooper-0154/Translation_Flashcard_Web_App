@@ -209,3 +209,4 @@ __marimo__/
 #Custom ignore
 .env
 venv/
+.DS_Store
