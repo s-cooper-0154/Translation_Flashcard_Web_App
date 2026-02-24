@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<div style = "border: 2px solid; padding: 50px; text-align: center; cursor: pointer;">
+		<h2 id = "card-text">Loading...</h2>
+	</div>
+	
+	<br>
+
+	<button onclick = "flipcard()">Reveal Answer</button>
+	<button onclick = "nextcard()">Next Card</button>
+
+	<script>
+		const cards = {{cards | tojson }};
+		let currentIndex = 0;
+		let showingFront = true;
+
+		const display = document.getElementById ('card-text')
+
+		function updatedisplay () {
+			if (cards.length > 0) {
+				display.innerText = showingFront ? cards[currentIndex].Front : cards[currentIndex].Back;
+			} else {
+				display.innerText = "No cards found.";
+			}
+		}
+
+		function flipcard () {
+			showingFront = !showingFront;
+			updatedisplay ();
+		}
+
+		function nextcard () {
+			if (currentIndex < cards.length -1) {
+				currentIndex++;
+				showingFront = true;
+				updatedisplay ();
+			} else {
+				alert ("You've reached the end of the deck.")
+			}
+		}
+
+		updatedisplay ()
+	</script>
+
+</body>
+</html>
+
